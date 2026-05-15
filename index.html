@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L-Pass Driving School Liverpool | Pass First Time</title>
+  <meta name="description" content="Liverpool's top-rated driving school. Manual & automatic lessons, intensive courses, and a 94% first-time pass rate. Book online instantly." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          },
+          colors: {
+            yellow:   '#FFD60A',
+            'yellow-dark': '#E6C000',
+            charcoal: '#1C1C1E',
+            'charcoal-2': '#2C2C2E',
+            'charcoal-3': '#3A3A3C',
+            'off-white': '#F5F5F0',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.7s ease both',
+            'fade-in': 'fadeIn 0.6s ease both',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp:  { '0%': { opacity: '0', transform: 'translateY(28px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            fadeIn:  { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Calendly popup styles -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+
+  <style>
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #1C1C1E; color: #F5F5F0; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Yellow glow utility */
+    .glow-yellow { box-shadow: 0 0 40px rgba(255, 214, 10, 0.25); }
+    .glow-yellow-sm { box-shadow: 0 4px 24px rgba(255, 214, 10, 0.3); }
+    .text-stroke { -webkit-text-stroke: 2px #FFD60A; color: transparent; }
+
+    /* Nav blur */
+    .nav-blur { backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); background: rgba(28,28,30,0.85); }
+
+    /* Diagonal slash hero accent */
+    .slash-bg {
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%; height: 100%;
+      background: #FFD60A;
+      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.06;
+    }
+
+    /* Gold gradient line */
+    .gold-line { background: linear-gradient(90deg, transparent, #FFD60A, transparent); height: 1px; }
+
+    /* Animate on scroll (JS-powered) */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* Calendly */
+    .calendly-inline-widget { min-width: 320px; height: 700px; }
+
+    /* Form */
+    input, textarea, select {
+      background: #2C2C2E;
+      border: 1px solid rgba(255,214,10,0.15);
+      color: #F5F5F0;
+      border-radius: 8px;
+      padding: 14px 16px;
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #FFD60A; }
+    input::placeholder, textarea::placeholder { color: #6E6E73; }
+
+    /* Mobile menu */
+    #mobile-menu { transition: max-height 0.35s ease, opacity 0.3s ease; max-height: 0; opacity: 0; overflow: hidden; }
+    #mobile-menu.open { max-height: 400px; opacity: 1; }
+
+    /* Pricing hover */
+    .price-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .price-card:hover { transform: translateY(-6px); }
+
+    /* Checklist tick */
+    .tick::before { content: ''; display: inline-block; width: 20px; height: 20px; background: #FFD60A; border-radius: 50%; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%231C1C1E' d='M7.629 13.179L4.218 9.768l-1.414 1.414 4.825 4.825 10.607-10.607-1.414-1.414z'/%3E%3C/svg%3E"); background-size: 14px; background-repeat: no-repeat; background-position: center; }
+
+    /* Star rating */
+    .stars { color: #FFD60A; letter-spacing: 2px; }
+
+    /* Scroll indicator */
+    @keyframes bounce-y { 0%,100%{transform:translateY(0)}50%{transform:translateY(8px)} }
+    .bounce-y { animation: bounce-y 1.6s ease-in-out infinite; }
+
+    /* Success / error states */
+    #form-success, #form-error { display: none; }
+  </style>
+</head>
+
+<body class="font-body">
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  NAVIGATION                                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<header class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-yellow/20">
+  <div class="max-w-6xl mx-auto px-5 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="#hero" class="font-display font-black text-2xl tracking-widest uppercase text-yellow">
+      L-Pass <span class="text-white">Driving</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+      <a href="#booking"      class="hover:text-yellow transition-colors">Book</a>
+      <a href="#pricing"      class="hover:text-yellow transition-colors">Pricing</a>
+      <a href="#benefits"     class="hover:text-yellow transition-colors">Why Us</a>
+      <a href="#theory"       class="hover:text-yellow transition-colors">Theory</a>
+      <a href="#testimonials" class="hover:text-yellow transition-colors">Reviews</a>
+      <a href="#contact"      class="hover:text-yellow transition-colors">Contact</a>
+    </nav>
+
+    <!-- Desktop CTA -->
+    <button
+      onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+      class="hidden md:inline-flex items-center gap-2 bg-yellow text-charcoal font-bold text-sm px-5 py-2.5 rounded-lg uppercase tracking-wide hover:bg-yellow-dark transition-colors glow-yellow-sm"
+    >
+      📅 Book Now
+    </button>
+
+    <!-- Hamburger -->
+    <button id="hamburger" class="md:hidden text-white p-2" aria-label="Menu">
+      <svg id="icon-open"  class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden border-t border-white/5">
+    <div class="px-5 py-4 flex flex-col gap-4 text-sm font-medium text-gray-300">
+      <a href="#booking"      class="hover:text-yellow transition-colors" onclick="closeMobile()">📅 Book a Lesson</a>
+      <a href="#pricing"      class="hover:text-yellow transition-colors" onclick="closeMobile()">Pricing</a>
+      <a href="#benefits"     class="hover:text-yellow transition-colors" onclick="closeMobile()">Why Choose Us</a>
+      <a href="#theory"       class="hover:text-yellow transition-colors" onclick="closeMobile()">Theory Support</a>
+      <a href="#testimonials" class="hover:text-yellow transition-colors" onclick="closeMobile()">Reviews</a>
+      <a href="#contact"      class="hover:text-yellow transition-colors" onclick="closeMobile()">Contact / Get a Quote</a>
+      <button
+        onclick="closeMobile(); Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+        class="w-full bg-yellow text-charcoal font-bold py-3 rounded-lg uppercase tracking-wide text-sm"
+      >Book a Lesson Now</button>
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  HERO                                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-16">
+
+  <!-- Background accents -->
+  <div class="slash-bg"></div>
+  <div class="absolute top-1/3 -left-32 w-72 h-72 rounded-full bg-yellow/5 blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-1/4 right-0 w-96 h-96 rounded-full bg-yellow/5 blur-3xl pointer-events-none"></div>
+
+  <!-- Grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(rgba(255,214,10,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,214,10,1) 1px, transparent 1px); background-size: 60px 60px;"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-5 py-20 grid md:grid-cols-2 gap-12 items-center">
+
+    <!-- Left: Copy -->
+    <div>
+      <!-- Badge -->
+      <span class="inline-flex items-center gap-2 bg-yellow/10 border border-yellow/30 text-yellow text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-widest mb-8 reveal">
+        🏆 Liverpool's #1 Rated Driving School
+      </span>
+
+      <h1 class="font-display font-black uppercase leading-none tracking-tight text-white mb-6 reveal reveal-delay-1"
+          style="font-size: clamp(52px, 9vw, 96px);">
+        Pass Your<br/>
+        Driving Test<br/>
+        <span class="text-yellow">Faster.</span>
+      </h1>
+
+      <p class="text-gray-400 text-lg mb-10 max-w-md leading-relaxed reveal reveal-delay-2">
+        Expert DVSA-approved instructors across Liverpool. Manual &amp; automatic. Flexible schedules. A pass rate that speaks for itself.
+      </p>
+
+      <div class="flex flex-wrap gap-4 reveal reveal-delay-3">
+        <button
+          onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})"
+          class="bg-yellow text-charcoal font-bold text-lg px-8 py-4 rounded-xl uppercase tracking-wide glow-yellow hover:bg-yellow-dark hover:-translate-y-0.5 transition-all"
+        >📅 Check Availability</button>
+        <a href="#pricing"
+          class="border border-white/20 text-white font-semibold text-lg px-7 py-4 rounded-xl hover:border-yellow hover:text-yellow transition-colors"
+        >View Pricing</a>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="flex flex-wrap gap-8 mt-12 pt-10 border-t border-white/10 reveal">
+        <div>
+          <div class="font-display font-black text-4xl text-yellow">94%</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">First-Time Pass Rate</div>
+        </div>
+        <div>
+          <div class="font-display font-black text-4xl text-yellow">2,400+</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Pupils Passed</div>
+        </div>
+        <div>
+          <div class="font-display font-black text-4xl text-yellow">12yrs</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest mt-1">Liverpool Experience</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Hero card -->
+    <div class="reveal reveal-delay-2">
+      <div class="bg-charcoal-2 border border-yellow/20 rounded-2xl p-8 glow-yellow relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-40 h-40 bg-yellow/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        <div class="text-5xl mb-5">🚗</div>
+        <h2 class="font-display font-black uppercase text-white text-3xl mb-3">Ready to Start?</h2>
+        <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+          See real-time lesson availability and book your first session in under 60 seconds. No phone calls. No waiting.
+        </p>
+        <button
+          onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+          class="w-full bg-yellow text-charcoal font-bold text-lg py-4 rounded-xl uppercase tracking-wide hover:bg-yellow-dark hover:-translate-y-0.5 transition-all glow-yellow-sm mb-4"
+        >📅 Book Your First Lesson</button>
+        <div class="flex items-center justify-center gap-2 text-xs text-gray-500">
+          <span class="text-green-400">✓</span> Free cancellation 48hrs before
+          <span class="mx-1">·</span>
+          <span class="text-green-400">✓</span> No deposit required
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-600 bounce-y">
+    <span class="text-xs uppercase tracking-widest">Scroll</span>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  BOOKING (Calendly inline)                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="booking" class="py-24 px-5 relative">
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-yellow/5 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3 reveal">Step 1 — Get Started</p>
+    <h2 class="font-display font-black uppercase text-white leading-none mb-4 reveal" style="font-size:clamp(36px,6vw,68px);">
+      Check Available<br/>Lessons
+    </h2>
+    <p class="text-gray-400 mb-12 max-w-md mx-auto reveal">
+      Live availability. Book instantly. Lessons 7 days a week across all Liverpool postcodes.
+    </p>
+
+    <!-- Calendly inline widget -->
+    <div class="bg-charcoal-2 border border-yellow/15 rounded-2xl overflow-hidden reveal glow-yellow">
+      <div class="calendly-inline-widget w-full"
+           data-url="https://calendly.com/your-link?hide_gdpr_banner=1&background_color=2C2C2E&text_color=F5F5F0&primary_color=FFD60A">
+      </div>
+    </div>
+
+    <p class="text-gray-600 text-xs mt-4 reveal">
+      Prefer to call? <a href="tel:01510000000" class="text-yellow hover:underline">0151 000 0000</a> — Mon–Sat 8am–7pm
+    </p>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  PRICING                                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="pricing" class="py-24 px-5">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3 reveal">Transparent Pricing</p>
+      <h2 class="font-display font-black uppercase text-white leading-none reveal" style="font-size:clamp(36px,6vw,68px);">
+        Lesson Packages
+      </h2>
+      <p class="text-gray-400 mt-4 max-w-md mx-auto reveal">No hidden fees. No surprises. Competitive rates across Liverpool & Merseyside.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Single Lesson -->
+      <div class="price-card bg-charcoal-2 border border-white/10 rounded-2xl p-8 hover:border-yellow/40 reveal">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Single Lesson</p>
+        <div class="flex items-start gap-1 mb-2">
+          <span class="font-display font-black text-white text-2xl mt-3">£</span>
+          <span class="font-display font-black text-white leading-none" style="font-size:72px">38</span>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">Per 1-hour lesson</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>1-hour lesson</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Manual or automatic</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Fully insured vehicle</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Door-to-door pickup</li>
+        </ul>
+        <button
+          onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+          class="w-full border border-yellow/40 text-yellow font-bold py-3.5 rounded-xl uppercase tracking-wide text-sm hover:bg-yellow hover:text-charcoal transition-all"
+        >Book Now</button>
+      </div>
+
+      <!-- Block of 10 — Featured -->
+      <div class="price-card relative bg-charcoal border-2 border-yellow rounded-2xl p-8 glow-yellow reveal reveal-delay-1">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow text-charcoal text-xs font-black uppercase px-5 py-1.5 rounded-full tracking-wide whitespace-nowrap">
+          ⭐ Best Value
+        </div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-yellow/70 mb-4">Block of 10 Lessons</p>
+        <div class="flex items-start gap-1 mb-2">
+          <span class="font-display font-black text-yellow text-2xl mt-3">£</span>
+          <span class="font-display font-black text-yellow leading-none" style="font-size:72px">350</span>
+        </div>
+        <p class="text-gray-400 text-sm mb-1">10 × 1-hour lessons</p>
+        <span class="inline-block bg-yellow/15 text-yellow text-xs font-bold px-3 py-1 rounded-full mb-6">Save £30 vs singles</span>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-gray-200 text-sm"><span class="tick"></span>10 full hours of tuition</li>
+          <li class="flex items-center gap-3 text-gray-200 text-sm"><span class="tick"></span>Progress tracking report</li>
+          <li class="flex items-center gap-3 text-gray-200 text-sm"><span class="tick"></span>Theory tips included</li>
+          <li class="flex items-center gap-3 text-gray-200 text-sm"><span class="tick"></span>Flexible scheduling</li>
+        </ul>
+        <button
+          onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+          class="w-full bg-yellow text-charcoal font-bold py-3.5 rounded-xl uppercase tracking-wide text-sm hover:bg-yellow-dark transition-all glow-yellow-sm"
+        >Book Now</button>
+      </div>
+
+      <!-- Intensive -->
+      <div class="price-card bg-charcoal-2 border border-white/10 rounded-2xl p-8 hover:border-yellow/40 reveal reveal-delay-2">
+        <p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Intensive Course</p>
+        <div class="flex items-start gap-1 mb-2">
+          <span class="font-display font-black text-white text-2xl mt-3">£</span>
+          <span class="font-display font-black text-white leading-none" style="font-size:72px">800</span>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">Full intensive programme</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Multiple lessons per day</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Pass in weeks, not months</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Full mock test included</li>
+          <li class="flex items-center gap-3 text-gray-300 text-sm"><span class="tick"></span>Test day support</li>
+        </ul>
+        <button
+          onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+          class="w-full border border-yellow/40 text-yellow font-bold py-3.5 rounded-xl uppercase tracking-wide text-sm hover:bg-yellow hover:text-charcoal transition-all"
+        >Book Now</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  BENEFITS                                                                    -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="benefits" class="py-24 px-5">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3 reveal">Why Choose Us</p>
+      <h2 class="font-display font-black uppercase text-white leading-none reveal" style="font-size:clamp(36px,6vw,68px);">
+        Every Advantage<br/>to Pass First Time
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Each benefit card -->
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal group">
+        <div class="text-4xl mb-4">🚗</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">Manual &amp; Automatic</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Both transmission types available with the same expert instructors.</p>
+      </div>
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal reveal-delay-1 group">
+        <div class="text-4xl mb-4">📍</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">Local Route Experts</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">We know every route used at Norris Green, Wavertree &amp; Aintree test centres.</p>
+      </div>
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal reveal-delay-2 group">
+        <div class="text-4xl mb-4">👩</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">Female Instructors</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Experienced female ADIs available — just let us know when booking.</p>
+      </div>
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal group">
+        <div class="text-4xl mb-4">🛡️</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">DVSA Approved</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">All instructors are fully qualified ADIs registered with the DVSA.</p>
+      </div>
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal reveal-delay-1 group">
+        <div class="text-4xl mb-4">📱</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">Easy Online Booking</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Book, cancel, or reschedule from your phone — 24/7, no phone tag.</p>
+      </div>
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 hover:border-yellow/30 hover:-translate-y-1 transition-all reveal reveal-delay-2 group">
+        <div class="text-4xl mb-4">🏆</div>
+        <h3 class="font-display font-black uppercase text-white text-xl mb-2">94% Pass Rate</h3>
+        <p class="text-gray-400 text-sm leading-relaxed">Well above the UK national average — consistently, across thousands of pupils.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  THEORY TEST SUPPORT                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="theory" class="py-24 px-5">
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+    <div class="reveal">
+      <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3">Free Bonus</p>
+      <h2 class="font-display font-black uppercase text-white leading-none mb-5" style="font-size:clamp(36px,5vw,60px);">
+        Theory Test<br/>Support
+      </h2>
+      <p class="text-gray-400 text-base mb-8 leading-relaxed">
+        Every L-Pass student gets our full theory prep kit included free. Because confident drivers start before they get behind the wheel.
+      </p>
+
+      <!-- Checklist -->
+      <ul class="space-y-4">
+        <li class="flex items-center gap-4 reveal">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">Hazard perception video walkthroughs</span>
+        </li>
+        <li class="flex items-center gap-4 reveal reveal-delay-1">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">Highway Code revision guides (PDF)</span>
+        </li>
+        <li class="flex items-center gap-4 reveal reveal-delay-1">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">Full mock theory test bank (50 questions)</span>
+        </li>
+        <li class="flex items-center gap-4 reveal reveal-delay-2">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">Instructor tips on commonly-failed questions</span>
+        </li>
+        <li class="flex items-center gap-4 reveal reveal-delay-2">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">Recommended apps &amp; practice platforms</span>
+        </li>
+        <li class="flex items-center gap-4 reveal reveal-delay-3">
+          <span class="tick flex-shrink-0"></span>
+          <span class="text-gray-200 text-sm">100% free with any lesson package</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Theory CTA card -->
+    <div class="bg-charcoal-2 border border-yellow/20 rounded-2xl p-10 text-center glow-yellow reveal reveal-delay-2">
+      <div class="text-6xl mb-5">📖</div>
+      <h3 class="font-display font-black uppercase text-white text-3xl mb-3">Free Theory Kit</h3>
+      <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+        Book any lesson and receive our complete theory preparation pack automatically — sent straight to your inbox.
+      </p>
+      <button
+        onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+        class="w-full bg-yellow text-charcoal font-bold text-base py-4 rounded-xl uppercase tracking-wide hover:bg-yellow-dark hover:-translate-y-0.5 transition-all glow-yellow-sm"
+      >Book &amp; Get Free Resources</button>
+      <p class="text-gray-600 text-xs mt-4">Included automatically — no extra steps needed</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS                                                                -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="testimonials" class="py-24 px-5">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3 reveal">Student Reviews</p>
+      <h2 class="font-display font-black uppercase text-white leading-none reveal" style="font-size:clamp(36px,6vw,68px);">
+        What Our Students Say
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 reveal">
+        <div class="stars text-lg mb-4">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Passed first time at Norris Green after 22 hours with L-Pass. My instructor knew every junction and hazard on the test route. Absolutely brilliant — couldn't recommend more."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center font-display font-black text-yellow text-sm flex-shrink-0">SJ</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Sophie J.</div>
+            <div class="text-gray-500 text-xs">Passed · Norris Green Test Centre</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 reveal reveal-delay-1">
+        <div class="stars text-lg mb-4">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"I chose the block of 10 and passed with only 2 minors at the Wavertree centre. The instructor was so calm and patient — transformed me from a nervous wreck to a confident driver."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center font-display font-black text-yellow text-sm flex-shrink-0">AK</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Amira K.</div>
+            <div class="text-gray-500 text-xs">Passed · Wavertree · Automatic</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 reveal reveal-delay-2">
+        <div class="stars text-lg mb-4">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Did the intensive course and passed at Aintree within three weeks. I needed my licence for a new job and L-Pass delivered. The theory kit they sent over was a huge help too."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center font-display font-black text-yellow text-sm flex-shrink-0">PP</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Priya P.</div>
+            <div class="text-gray-500 text-xs">Passed · Aintree Test Centre · Intensive</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 reveal">
+        <div class="stars text-lg mb-4">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Requested a female instructor and was matched within 24 hours. She was outstanding — incredibly patient and knowledgeable. Clean pass, zero majors, at Norris Green."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center font-display font-black text-yellow text-sm flex-shrink-0">OW</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Olivia W.</div>
+            <div class="text-gray-500 text-xs">Passed · Female Instructor · Norris Green</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-charcoal-2 border border-white/8 rounded-xl p-7 reveal reveal-delay-1">
+        <div class="stars text-lg mb-4">★★★★★</div>
+        <p class="text-gray-300 text-sm leading-relaxed italic mb-6">"Tried two other schools in Liverpool before L-Pass. The difference was massive. Always punctual, always professional. Passed second attempt overall — first with L-Pass."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-charcoal flex items-center justify-center font-display font-black text-yellow text-sm flex-shrink-0">ML</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Marcus L.</div>
+            <div class="text-gray-500 text-xs">Passed · Wavertree Test Centre</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA card in testimonials -->
+      <div class="bg-yellow rounded-xl p-7 flex flex-col justify-center text-center reveal reveal-delay-2">
+        <div class="font-display font-black uppercase text-charcoal text-4xl mb-2">Join Them</div>
+        <p class="text-charcoal/70 text-sm mb-6">2,400+ Liverpool drivers passed with L-Pass.</p>
+        <button
+          onclick="Calendly.initPopupWidget({url:'https://calendly.com/your-link'}); return false;"
+          class="bg-charcoal text-yellow font-bold text-sm py-3.5 rounded-xl uppercase tracking-wide hover:bg-charcoal-2 transition-colors"
+        >📅 Book Your Lesson</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gold-line max-w-6xl mx-auto px-5"></div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  LEAD CAPTURE FORM (Web3Forms — no backend needed)                          -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<section id="contact" class="py-24 px-5">
+  <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+
+    <!-- Left: info -->
+    <div class="reveal">
+      <p class="text-xs font-semibold uppercase tracking-[4px] text-yellow mb-3">Get in Touch</p>
+      <h2 class="font-display font-black uppercase text-white leading-none mb-5" style="font-size:clamp(34px,5vw,58px);">
+        Request a<br/>Free Quote
+      </h2>
+      <p class="text-gray-400 text-sm mb-8 leading-relaxed">
+        Fill in your details and we'll get back to you within 2 hours with a personalised lesson plan and pricing recommendation.
+      </p>
+      <div class="space-y-5">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-yellow/10 border border-yellow/20 flex items-center justify-center text-xl flex-shrink-0">📞</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Phone</div>
+            <a href="tel:01510000000" class="text-gray-400 text-sm hover:text-yellow transition-colors">0151 000 0000</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-yellow/10 border border-yellow/20 flex items-center justify-center text-xl flex-shrink-0">✉️</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Email</div>
+            <a href="mailto:hello@lpassdriving.co.uk" class="text-gray-400 text-sm hover:text-yellow transition-colors">hello@lpassdriving.co.uk</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-yellow/10 border border-yellow/20 flex items-center justify-center text-xl flex-shrink-0">📍</div>
+          <div>
+            <div class="text-white font-semibold text-sm">Area Covered</div>
+            <span class="text-gray-400 text-sm">All Liverpool &amp; Merseyside postcodes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: form -->
+    <!--
+      WEB3FORMS SETUP:
+      1. Go to https://web3forms.com and sign up free
+      2. Enter your email address — they'll send you an Access Key
+      3. Replace "YOUR_WEB3FORMS_ACCESS_KEY" below with your real key
+      That's it — form submissions will be emailed to you, no backend needed.
+    -->
+    <div class="bg-charcoal-2 border border-white/10 rounded-2xl p-8 reveal reveal-delay-1">
+      <form id="lead-form" action="https://api.web3forms.com/submit" method="POST" class="space-y-5" novalidate>
+
+        <!-- Web3Forms access key — replace this -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+        <!-- Redirect after success (optional — leave blank to use JS handler) -->
+        <input type="hidden" name="redirect" value="" />
+        <!-- Custom subject line for your inbox -->
+        <input type="hidden" name="subject" value="New Lead — L-Pass Driving School Website" />
+        <!-- Honeypot anti-spam field -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Full Name *</label>
+          <input type="text" name="name" placeholder="Your full name" required />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Phone Number *</label>
+          <input type="tel" name="phone" placeholder="07700 000000" required />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Email Address *</label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Lesson Type</label>
+          <select name="lesson_type">
+            <option value="">— Select a package —</option>
+            <option value="Single Lesson (£38)">Single Lesson — £38</option>
+            <option value="Block of 10 (£350)">Block of 10 — £350</option>
+            <option value="Intensive Course (£800)">Intensive Course — £800</option>
+            <option value="Not sure yet">Not sure yet — help me choose</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">Message (optional)</label>
+          <textarea name="message" rows="3" placeholder="Any questions or extra details…"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn"
+          class="w-full bg-yellow text-charcoal font-bold text-base py-4 rounded-xl uppercase tracking-wide hover:bg-yellow-dark hover:-translate-y-0.5 transition-all glow-yellow-sm"
+        >Send My Enquiry →</button>
+
+        <!-- Success message -->
+        <div id="form-success" class="bg-green-900/30 border border-green-500/40 text-green-300 text-sm text-center py-4 rounded-xl">
+          ✅ Message sent! We'll be in touch within 2 hours.
+        </div>
+        <!-- Error message -->
+        <div id="form-error" class="bg-red-900/30 border border-red-500/40 text-red-300 text-sm text-center py-4 rounded-xl">
+          ⚠️ Something went wrong. Please try calling us on 0151 000 0000.
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<footer class="border-t border-white/8 bg-black/30">
+  <div class="max-w-6xl mx-auto px-5 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="font-display font-black text-3xl uppercase tracking-widest text-yellow mb-3">
+          L-Pass <span class="text-white">Driving</span>
+        </div>
+        <p class="text-gray-500 text-sm leading-relaxed">Liverpool's top-rated DVSA-approved driving school. Helping learners pass first time since 2012.</p>
+      </div>
+      <!-- Quick links -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">Quick Links</h4>
+        <ul class="space-y-3 text-sm text-gray-500">
+          <li><a href="#booking"      class="hover:text-yellow transition-colors">Book a Lesson</a></li>
+          <li><a href="#pricing"      class="hover:text-yellow transition-colors">Pricing</a></li>
+          <li><a href="#theory"       class="hover:text-yellow transition-colors">Theory Support</a></li>
+          <li><a href="#testimonials" class="hover:text-yellow transition-colors">Student Reviews</a></li>
+          <li><a href="#contact"      class="hover:text-yellow transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Contact -->
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-gray-400 mb-5">Contact Us</h4>
+        <ul class="space-y-3 text-sm text-gray-500">
+          <li>📞 <a href="tel:01510000000" class="hover:text-yellow transition-colors">0151 000 0000</a></li>
+          <li>✉️ <a href="mailto:hello@lpassdriving.co.uk" class="hover:text-yellow transition-colors">hello@lpassdriving.co.uk</a></li>
+          <li>📍 Serving all Liverpool &amp; Merseyside</li>
+          <li>🕐 Mon–Sat, 8am–7pm</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gold-line mb-8"></div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+      <p>© 2025 L-Pass Driving School Liverpool. All rights reserved. DVSA Approved Instructors.</p>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-yellow transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-yellow transition-colors">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+<!--  SCRIPTS                                                                     -->
+<!-- ═══════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Calendly popup widget -->
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget init -->
+<script>
+  window.addEventListener('load', function() {
+    if (window.Calendly) {
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/your-link?hide_gdpr_banner=1&background_color=2C2C2E&text_color=F5F5F0&primary_color=FFD60A',
+        parentElement: document.querySelector('.calendly-inline-widget'),
+      });
+    }
+  });
+</script>
+
+<script>
+/* ── Mobile menu ─────────────────────────────────────────────────────────── */
+const hamburger  = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const iconOpen   = document.getElementById('icon-open');
+const iconClose  = document.getElementById('icon-close');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.contains('open');
+  mobileMenu.classList.toggle('open', !isOpen);
+  iconOpen.classList.toggle('hidden', !isOpen);
+  iconClose.classList.toggle('hidden', isOpen);
+});
+
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+  iconOpen.classList.remove('hidden');
+  iconClose.classList.add('hidden');
+}
+
+/* ── Scroll reveal ───────────────────────────────────────────────────────── */
+const revealEls = document.querySelectorAll('.reveal');
+const observer  = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => observer.observe(el));
+
+/* ── Sticky nav shadow on scroll ─────────────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  document.querySelector('header').style.boxShadow =
+    window.scrollY > 20 ? '0 4px 40px rgba(0,0,0,0.5)' : 'none';
+});
+
+/* ── Web3Forms lead capture ──────────────────────────────────────────────── */
+const form       = document.getElementById('lead-form');
+const submitBtn  = document.getElementById('submit-btn');
+const successMsg = document.getElementById('form-success');
+const errorMsg   = document.getElementById('form-error');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Basic client-side validation
+  const name  = form.querySelector('[name="name"]').value.trim();
+  const email = form.querySelector('[name="email"]').value.trim();
+  const phone = form.querySelector('[name="phone"]').value.trim();
+  if (!name || !email || !phone) {
+    alert('Please fill in your name, email, and phone number.');
+    return;
+  }
+
+  submitBtn.textContent = 'Sending…';
+  submitBtn.disabled = true;
+
+  try {
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(Object.fromEntries(new FormData(form))),
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      successMsg.style.display = 'block';
+      errorMsg.style.display   = 'none';
+      form.reset();
+    } else {
+      throw new Error(data.message || 'Submission failed');
+    }
+  } catch (err) {
+    errorMsg.style.display   = 'block';
+    successMsg.style.display = 'none';
+    console.error('Form error:', err);
+  } finally {
+    submitBtn.textContent = 'Send My Enquiry →';
+    submitBtn.disabled    = false;
+  }
+});
+</script>
+
+</body>
+</html>
