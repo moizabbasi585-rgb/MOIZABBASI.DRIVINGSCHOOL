@@ -1,3 +1,17 @@
+import "./globals.css";
+
+export const metadata = {
+  title: "L-Pass Driving School Liverpool",
+  description: "Pass your driving test faster in Liverpool with elite instructors.",
+};
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
 import { Barlow_Condensed, DM_Sans } from "next/font/google";
 import "./globals.css";
 
